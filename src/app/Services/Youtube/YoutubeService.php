@@ -145,7 +145,7 @@ class YoutubeService implements YoutubeServiceInteface
 
             $key = $this->getComputerId() . '|' . $url;
 
-            if ($this->limiter->tooManyAttempts($key, 60)) {
+            if ($this->limiter->tooManyAttempts($key, 80) === true) {
                 throw new \Exception('Too many requests', 429);
             }
 
@@ -157,7 +157,7 @@ class YoutubeService implements YoutubeServiceInteface
                 $response = json_decode($this->client->request('GET', $url, ['headers' => $headers, 'query' => $params])->getBody(), true);
             }
 
-            $this->limiter->hit($key, 1 * 60);
+            $this->limiter->hit($key, 30);
         } catch (\Exception $e) {
 
             throw new \Exception($e->getMessage(), $e->getCode());

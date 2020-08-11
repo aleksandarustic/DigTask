@@ -14,4 +14,7 @@ class Country extends Model
     protected $fillable = [
         'name', 'region_code', 'wikipedia_title'
     ];
+
+    public static $type = 'Country';
+
 }

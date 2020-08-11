@@ -28,7 +28,7 @@ abstract class ApiUtill implements ApiUtillInterface
      */
     public function getFromExternalApiOrCache(String $key, Int $id, $apiCall)
     {
-        if (!Cache::has($key . '-' . $id)) {
+         if (!Cache::has($key . '-' . $id)) {
 
             $result = $apiCall();
 
@@ -37,7 +37,7 @@ abstract class ApiUtill implements ApiUtillInterface
             } else {
                 Cache::put($key . '-' . $id, $result);
             }
-        }
+         }
 
         return Cache::get($key . '-' . $id);
     }

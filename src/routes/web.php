@@ -19,4 +19,7 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api', 'middleware' => 'throttle:30,1'], function () use ($router) {
     $router->get('countries', 'CountryController@index');
     $router->get('countries/{country}', 'CountryController@show');
+
+    $router->get('countries/code/{region_code}', 'CountryController@showByRegionCode');
+
 });

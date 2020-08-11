@@ -9,7 +9,7 @@ use Illuminate\Cache\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Register youtubes service for using youtube api
+ * Register youtubes service interact with youtube api
  */
 class YoutubeServiceProvider extends ServiceProvider
 {

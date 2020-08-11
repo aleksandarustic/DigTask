@@ -64,4 +64,25 @@ class CountryController extends Controller
 
         return new Country($country);
     }
+
+
+    /**
+     * show : Returns single country from database with populated data from wikipedia and youtube
+     *
+     * @param  Request $request
+     * @param  int $id
+     * @return Country
+     */
+    public function showByRegionCode(Request $request, string $region_code): Country
+    {
+
+        $params = $this->validate($request, [
+            'fields' => 'string|filled',
+            'include' => 'string|filled',
+        ]);
+
+        $country = $this->repo->findCountryByRegionCode($region_code, $params);
+
+        return new Country($country);
+    }
 }

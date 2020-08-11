@@ -47,6 +47,8 @@ class BaseRepository implements EloquentRepositoryInterface
     {
         $query = new $this->model;
 
+        $filter = $this->prepareFilters($filter);
+
         $query = $query->when(Arr::exists($filter, 'include'), function ($q) use ($filter) {
             return $q->with(array_map(['Str', 'camel'], $filter['include']));
         });

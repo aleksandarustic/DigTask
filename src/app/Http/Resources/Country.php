@@ -19,11 +19,16 @@ class Country extends JsonResource
     {
 
         return [
-            $this->attributes(['id', 'name', 'region_code', 'wikipedia_title']),
-            'initial_paragraphs'  => $this->when($this->initial_paragraphs, $this->initial_paragraphs),
-            'videos' => $this->when(isset($this->videos), function () {
-                return Video::collection(collect($this->videos['items']));
-            }),
+            'id' => $this->id,
+            'type' => $this->resource::$type,
+            'attributes' => [
+                $this->attributes(['id', 'name', 'region_code', 'wikipedia_title']),
+                'initial_paragraphs'  => $this->when($this->initial_paragraphs, $this->initial_paragraphs),
+                'videos' => $this->when(isset($this->videos), function () {
+                    return Video::collection(collect($this->videos['items']));
+                }),
+            ],
+
         ];
     }
 }

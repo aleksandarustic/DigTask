@@ -17,11 +17,12 @@ class Video extends JsonResource
      */
     public function toArray($request)
     {
-
         return [
             'title' => $this->resource['snippet']['title'],
             'description' => $this->resource['snippet']['description'],
-            'thumbnails' => $this->resource['snippet']['thumbnails'],
+            'thumbnails' => collect($this->resource['snippet']['thumbnails'])->filter(function ($value, $key) {
+                return $key == 'default' || $key == 'high';
+            }),
         ];
     }
 }
