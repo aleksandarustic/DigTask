@@ -1,8 +1,10 @@
 
 ## Installation Instructions
 
-- ports 8088,4306,9000,6379 should not be occupied by other service before running of docker (You can change ports in docker-compose.yml)
+- ports 8088,4306,9000,6382 should not be occupied by other service before running of docker (You can change ports in docker-compose.yml)
 - run docker-compose up in termainal
+- run docker-compose run --rm composer install
+- run docker-compose run --rm artisan migrate:fresh
 
 ## Api Call examples
 
