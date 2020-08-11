@@ -4,10 +4,30 @@ namespace App\Services\Wikipedia;
 
 use InvalidArgumentException;
 
+/**
+ * Service for manipulation with wikipedia api
+ */
 class WikipediaService implements WikipediaServiceInteface
 {
+    /**
+     * Client which is used to make api request
+     *
+     * @var mixed
+     */
     protected $client;
+
+    /**
+     * Language of wikipedia which will be used 
+     *
+     * @var string
+     */
     protected $lang;
+
+    /**
+     * Limiter class used to set rate limit
+     *
+     * @var mixed
+     */
     protected $limiter;
 
     /**
@@ -16,6 +36,13 @@ class WikipediaService implements WikipediaServiceInteface
      */
     private $language_supported = ['de', 'en', 'es', 'fr', 'it', 'nl', 'pl', 'ru', 'ceb', 'sv', 'vi', 'war'];
 
+    /**
+     * Instanciate wikipedia service
+     *
+     * @param  string $lang
+     * @param  mixed $client
+     * @param  mixed $rate_limiter
+     */
     public function __construct(string $lang = 'en', $client, $rate_limiter)
     {
         $this->setLang($lang);
@@ -24,16 +51,21 @@ class WikipediaService implements WikipediaServiceInteface
         $this->limiter = $rate_limiter;
     }
 
-    protected function baseUri()
+    /**
+     * Wikipedia base url
+     *
+     * @return string
+     */
+    protected function baseUri(): string
     {
         return "https://{$this->lang}.wikipedia.org/w/api.php";
     }
 
     /**
-     * @param $key
-     * @return Youtube
+     * @param  string
+     * @return WikipediaService
      */
-    public function setLang($lang)
+    public function setLang($lang): WikipediaService
     {
         if (!in_array($lang, $this->getSupportedLanguages())) {
             throw new InvalidArgumentException(
@@ -47,9 +79,10 @@ class WikipediaService implements WikipediaServiceInteface
     }
 
     /**
-     * @return string
+     * Return language
+     * @return string 
      */
-    public function getLang()
+    public function getLang(): string
     {
         return $this->lang;
     }
@@ -58,26 +91,34 @@ class WikipediaService implements WikipediaServiceInteface
      *  Get the list of supported languages
      * @return array
      */
-    public function getSupportedLanguages()
+    public function getSupportedLanguages(): array
     {
         return $this->language_supported;
     }
 
 
-    public function getComputerId()
+    /**
+     * Return unique mahine id
+     *
+     * @return string
+     */
+    public function getComputerId(): string
     {
         return $_SERVER['HTTP_USER_AGENT'] . $_SERVER['REMOTE_ADDR'];
     }
 
 
+
     /**
-     * Gets popular videos for a specific region (ISO 3166-1 alpha-2)
+     * Gets country initial summary from wikipedia api.
      *
-     * @param $regionCode
-     * @param integer $maxResults
-     * @param array $part
+     * @param  string $titles
+     * @param  string $action
+     * @param  string $format
+     * @param  bool $async
+     * @return mixed
      */
-    public function getInitialParagraphs($titles, $action = 'query', $format = 'json', $async = true)
+    public function getInitialParagraphs(string $titles, string $action = 'query', string $format = 'json', bool $async = true)
     {
         $params = [
             'titles' => $titles,
@@ -106,7 +147,15 @@ class WikipediaService implements WikipediaServiceInteface
     }
 
 
-    public function callApi($url, $params, $async = false)
+    /**
+     * Creates asnyc or regular api request and parse response
+     *
+     * @param  string $url
+     * @param  array $params
+     * @param  mixed $async
+     * @return mixed
+     */
+    public function callApi(string $url, array $params,bool $async = false)
     {
         try {
             $headers = [
@@ -136,10 +185,9 @@ class WikipediaService implements WikipediaServiceInteface
     }
 
     /**
-     *  Get list of articles or items
+     *  Get list or item
      * @param  array $data
      * @param  string $field
-     * @param  integer $i
      * @param  string $default
      * @return mixed
      */

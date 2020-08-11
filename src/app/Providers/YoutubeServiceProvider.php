@@ -8,6 +8,9 @@ use GuzzleHttp\Client;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Register youtubes service for using youtube api
+ */
 class YoutubeServiceProvider extends ServiceProvider
 {
     /**

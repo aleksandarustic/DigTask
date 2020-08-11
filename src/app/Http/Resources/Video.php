@@ -4,6 +4,9 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * Transform youtube video data
+ */
 class Video extends JsonResource
 {
     /**
@@ -17,7 +20,7 @@ class Video extends JsonResource
 
         return [
             'title' => $this->resource['snippet']['title'],
-            'description' =>$this->resource['snippet']['description'],
+            'description' => $this->resource['snippet']['description'],
             'thumbnails' => $this->resource['snippet']['thumbnails'],
         ];
     }

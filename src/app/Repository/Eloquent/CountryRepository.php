@@ -12,7 +12,8 @@ class CountryRepository extends BaseRepository implements CountryRepositoryInter
 {
 
     /**      
-     * BaseRepository constructor.      
+     * BaseRepository constructor.
+     * Injects countryApiUtill in repository      
      *      
      * @param Job $model      
      */
@@ -24,13 +25,26 @@ class CountryRepository extends BaseRepository implements CountryRepositoryInter
     }
 
 
+    /**
+     * Get All available country and populate every resource with data from youtube and wikipedia
+     *
+     * @param  mixed $filters
+     * @return void
+     */
     public function getAll(array $filters)
     {
         $models = $this->all($filters);
 
         return $this->api_utill->process($models);
     }
-
+    
+    /**
+     * Returns single instance of country with populated data from youtube and wikipedia api
+     *
+     * @param  mixed $id
+     * @param  mixed $filters
+     * @return void
+     */
     public function findCountry(int $id, array $filters)
     {
         $models = $this->find($id, $filters);

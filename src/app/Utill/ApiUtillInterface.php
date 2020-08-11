@@ -2,9 +2,11 @@
 
 namespace App\Utill;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
+/**      
+ * Interface for apiUtill Service     
+ */
 interface ApiUtillInterface
 {
 
@@ -12,8 +14,7 @@ interface ApiUtillInterface
 
     public function storeApiData(String $key, $data);
 
-    public function process(Collection $models): Collection;
+    public function process($models);
 
     public function processSingle(Model $model): Model;
-
 }

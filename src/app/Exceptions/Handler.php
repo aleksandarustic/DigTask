@@ -11,6 +11,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
+    /**
+     * Return error in json format
+     *
+     * @param  mixed $request
+     * @param  mixed $exception
+     * @return void
+     */
     public function render($request, Exception $exception)
     {
         //HTTP Error Code 405
@@ -36,7 +43,6 @@ class Handler extends ExceptionHandler
         }
 
 
-        //Here to add more instances or to close the loop.
         return response()->json(
             [
                 "error" => 'ERROR',

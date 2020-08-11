@@ -4,6 +4,9 @@ namespace App\Utill;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**      
+ * Interface for country UtillInterface    
+ */
 interface CountryUtillInterface
 {
 

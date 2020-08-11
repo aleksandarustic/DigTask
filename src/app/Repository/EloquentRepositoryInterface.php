@@ -22,7 +22,11 @@ interface EloquentRepositoryInterface
      * @return Model
      */
     public function find($id, array $filter): ?Model;
-
-
+    /**
+     * all
+     *
+     * @param  mixed $filter
+     * @return mixed 
+     */
     public function all(array $filter);
 }

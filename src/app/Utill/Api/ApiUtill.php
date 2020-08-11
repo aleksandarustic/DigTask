@@ -6,11 +6,27 @@ use Illuminate\Support\Facades\Cache;
 
 use App\Utill\ApiUtillInterface;
 
+/**
+ * Base ApiUtill functionality
+ */
 abstract class ApiUtill implements ApiUtillInterface
 {
+    /**
+     * list of async promises where response is not returned
+     *
+     * @var array
+     */
     protected $promises = [];
 
-    public function getFromExternalApiOrCache(String $key,Int $id, $apiCall)
+    /**
+     * Return data from cache or from api request
+     *
+     * @param  string $key
+     * @param  int $id
+     * @param  mixed $apiCall
+     * @return mixed
+     */
+    public function getFromExternalApiOrCache(String $key, Int $id, $apiCall)
     {
         if (!Cache::has($key . '-' . $id)) {
 
@@ -26,6 +42,13 @@ abstract class ApiUtill implements ApiUtillInterface
         return Cache::get($key . '-' . $id);
     }
 
+    /**
+     * Return data from cache if exist or return data from api and store it to cache
+     *
+     * @param  mixed $key
+     * @param  mixed $data
+     * @return void
+     */
     public function storeApiData(String $key, $data)
     {
         return Cache::rememberForever($key, function () use ($data) {

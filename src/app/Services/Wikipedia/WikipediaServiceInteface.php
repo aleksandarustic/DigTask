@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace App\Services\Wikipedia;
 
-interface WikipediaServiceInteface {
-    public function getInitialParagraphs($titles, $action = 'query', $format = 'json', $async = true);
-    public function callApi($url, $params, $async = false);
+interface WikipediaServiceInteface
+{
+    public function getInitialParagraphs(string $titles, string $action = 'query', string $format = 'json', bool $async = true);
+    public function callApi(string $url, array $params, bool $async = false);
 }

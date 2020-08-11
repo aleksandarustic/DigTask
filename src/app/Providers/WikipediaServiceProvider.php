@@ -9,6 +9,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Cache\RateLimiter;
 
 
+/**
+ * Register wikipedia service interact with wikipedia api
+ */
 class WikipediaServiceProvider extends ServiceProvider
 {
     /**

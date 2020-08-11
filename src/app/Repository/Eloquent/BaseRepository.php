@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 
 
 /**
- * BaseRepository: This is base repository for easier manipulatio with eloquent
+ * BaseRepository: This is base repository for easier manipulation with eloquent
  */
 class BaseRepository implements EloquentRepositoryInterface
 {
@@ -39,6 +39,7 @@ class BaseRepository implements EloquentRepositoryInterface
     }
 
     /**
+     * Returns single resource from database
      * @param $id
      * @return Model
      */
@@ -59,7 +60,7 @@ class BaseRepository implements EloquentRepositoryInterface
 
 
     /**
-     * Transform data in preparation for validation.
+     * Prepare data for filtering.
      *
      * @return void
      */
@@ -74,6 +75,7 @@ class BaseRepository implements EloquentRepositoryInterface
     }
 
     /**
+     * Returns all resources from database 
      * @return Collection
      */
     public function all(array $filter)

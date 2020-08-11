@@ -9,6 +9,9 @@ use App\Repository\CountryRepositoryInterface;
 use App\Repository\Eloquent\BaseRepository;
 use App\Repository\Eloquent\CountryRepository;
 
+/**
+ * Inject Specified Repositories in application
+ */
 class RepositoryServiceProvider extends ServiceProvider
 {
     /**
