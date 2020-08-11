@@ -69,11 +69,11 @@ class BaseRepository implements EloquentRepositoryInterface
     public function prepareFilters($filters)
     {
         $sanitize = [
-            'include' => array_filter(explode(',',$filters['include'] ?? ''), 'strlen'),
+            'include' => array_filter(explode(',', $filters['include'] ?? ''), 'strlen'),
             'fields' => array_filter(explode(',', $filters['fields'] ?? ''), 'strlen'),
         ];
 
-        return array_merge($filters,array_intersect_key($sanitize, $filters));
+        return array_merge($filters, array_intersect_key($sanitize, $filters));
     }
 
     /**
@@ -82,7 +82,6 @@ class BaseRepository implements EloquentRepositoryInterface
      */
     public function all(array $filter)
     {
-
         $query = new $this->model;
 
         $filter = $this->prepareFilters($filter);
