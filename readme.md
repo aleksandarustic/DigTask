@@ -22,9 +22,10 @@
 
 You can clear cache by running following command: docker-compose run --rm artisan cache:clear
 
+command for running tests - docker-compose run --rm php vendor/bin/phpunit
+
 "initial_paragraphs" -  is property that represent wikipedia data
 "videos"  - is property that represent youtube data
 
-command for running tests - docker-compose run --rm php vendor/bin/phpunit
 
 
